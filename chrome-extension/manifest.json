@@ -1,9 +1,24 @@
 {
-    "manifest_version": 3,
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
-    "version": "1.0",
-    "action": {
-      "default_popup": "hello.html"
+  "manifest_version": 2,
+  "name": "Email Tracker",
+  "version": "1.0",
+  "description": "Track when your emails are opened",
+  "permissions": [
+    "https://mail.google.com/*",
+    "https://script.google.com/*",
+    "storage"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["content.js"]
     }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
   }
+}
